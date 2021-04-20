@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for autofill_gmap_field module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity;
+use Drupal\Core\Entity\EntityInterface;
+
+
+/**
+ * Implements hook_help().
+ */
+function autofill_gmap_field_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the autofill_gmap_field module.
+    case 'help.page.autofill_gmap_field':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Pour les prestataires, remplit le champs carte (si vide) des entités ayant un champ adresse et un champ carte.') . '</p>';
+      return $output;
+
+    default:
+
+  }
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function autofill_gmap_field_entity_presave($entity) {   //Action avant de sauvegarder un noeud
+  // quand on a un champ 'carte' et un champ 'contact' sur le même formulaire et que le champ 'carte' est vide
+  if ($entity->bundle() =="prestataire" && $entity->hasfield('field_carte') && $entity->hasfield('field_contact') && is_null($entity->field_carte->value)==1) {
+    $address_from_contact=$entity->field_contact[0]->subform["field_adresse"][0]["address"];
+    $gmap_address=$address_from_contact["address_line1"].' '.$address_from_contact["address_line2"].' '.$address_from_contact["postal_code"].' '.$address_from_contact["locality"];
+    //var_dump($gmap_address);
+    $entity->field_carte = $gmap_address; // on rempli le champs carte avec l'adresse de contact.
+    }
+}
