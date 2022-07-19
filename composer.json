@@ -1,0 +1,17 @@
+{
+    "name": "aquarius/autofill_gmap_field",
+    "description": "autocomplete field from gmap module",
+    "type": "drupal-custom-module",
+    "authors": [
+        {
+            "name": "Cyril Béguet",
+            "email": "webmaster.beguet@free.fr"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "drupal/simple_gmap": "^3.0",
+        "drupal/address": "^1.6",
+        "drupal/paragraphs": "1.12"
+    }
+}
