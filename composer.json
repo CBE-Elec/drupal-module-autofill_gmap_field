@@ -10,8 +10,8 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "drupal/simple_gmap",
-        "drupal/address",
-        "drupal/paragraphs"
+        "drupal/simple_gmap": "^3",
+        "drupal/address": "^2",
+        "drupal/paragraphs": "^1"
     }
 }
