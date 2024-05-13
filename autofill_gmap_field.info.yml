@@ -2,7 +2,7 @@ name: 'Autofill Gmap field'
 type: module
 description: Fill field for Google Map automatically from contact field (field's name to respect) in "Prestataire" content.
 package: 'Aquarius'
-version: '1.1.4'
+version: '1.1.5'
 core_version_requirement: ^9 || ^10
 
 dependencies:
